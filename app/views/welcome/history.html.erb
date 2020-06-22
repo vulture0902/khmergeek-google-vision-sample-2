@@ -1,0 +1,16 @@
+<div class="container mb-5">
+  <%= link_to 'back to input', root_path %>
+  <div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-4 mt-1">
+      <div class="card bg-light">
+        <img class="card-img-top" src="<%= post.image %>" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= post.id %></h5>
+          <h5 class="card-title"><%= post.khmer_text %></h5>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

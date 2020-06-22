@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-12" id='sheet-wrapper'>
+      <canvas id="sheet"></canvas>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <button type="button" id='pre_btn' class="btn btn-dark">Check Khmer Text</button>
+      <%= form_tag(upload_path, method: :post, remote: true) { %>
+        <%= hidden_field_tag 'img_data'  %>
+        <%= submit_tag '-', id: 'submit' %>
+      <% } %>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12">
+      <p id='output-khmer-text'></p>
+    </div>
+  </div>
+</div>
+
+<script>
+var canvas = new fabric.Canvas('sheet');
+canvas.isDrawingMode = true;
+canvas.freeDrawingBrush.width = 6;
+canvas.freeDrawingBrush.color = "#000000";
+canvas.setWidth($('#sheet-wrapper').innerWidth()-50);
+canvas.setHeight(250);
+
+$('#pre_btn').click(function(){
+  var hidden = document.getElementById('img_data');
+  var canvas = document.getElementById('sheet');
+  var submit = document.getElementById('submit');
+  hidden.value = canvas.toDataURL();
+  submit.click();
+});
+
+$('#submit').hide();
+</script>
